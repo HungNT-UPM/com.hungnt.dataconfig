@@ -1,0 +1,18 @@
+{
+    "name": "HungNT.Database.Demo",
+    "rootNamespace": "HungNT.Database.Demo",
+    "references": [
+        "HungNT.Core",
+        "HungNT.Database",
+        "Sirenix.OdinInspector.Attributes"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
