@@ -2,11 +2,11 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace HungNT.Database.Demo
+namespace HungNT.DataConfig.Demo
 {
     [ContentAsset]
-    [CreateAssetMenu(fileName = "CustomerTable", menuName = "Game/Database/CustomerTable")]
-    public class CustomerTable : BaseDataTable
+    [CreateAssetMenu(fileName = "CustomerTable", menuName = "Game/DataConfig/CustomerTable")]
+    public class CustomerTable : BaseDataConfigTable
     {
         [ArrayContent("CustomerTable")]
         [TableList(ShowIndexLabels = true)]

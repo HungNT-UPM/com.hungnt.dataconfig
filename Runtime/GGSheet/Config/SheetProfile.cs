@@ -1,8 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>Một bảng (SO) ánh xạ tới tab trên spreadsheet. Type dữ liệu lấy từ <see cref="TableAsset"/>.</summary>
     [Serializable]
@@ -17,6 +16,6 @@ namespace HungNT.Database
         [TableColumnWidth(220, Resizable = true)]
         [AssetsOnly]
         [AssetSelector(Paths = "Assets/")]
-        public BaseDataTable TableAsset;
+        public BaseDataConfigTable TableAsset;
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class SheetReaderUtils
     {

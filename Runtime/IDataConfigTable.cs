@@ -1,9 +1,9 @@
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>
-    /// Interface cho một database table (ScriptableObject chứa config data).
+    /// Interface cho một data config table (ScriptableObject chứa config data).
     /// </summary>
-    public interface IDataTable
+    public interface IDataConfigTable
     {
         /// <summary>Tên table (dùng cho debug / log).</summary>
         string TableName { get; }

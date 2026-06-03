@@ -1,9 +1,8 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>Một tab (worksheet) trên Google Sheet và khoảng cột tùy chọn.</summary>
     [Serializable]

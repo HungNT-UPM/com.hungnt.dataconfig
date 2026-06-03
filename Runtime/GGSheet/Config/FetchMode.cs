@@ -1,4 +1,4 @@
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     public enum FetchMode
     {

@@ -1,13 +1,12 @@
 {
-    "name": "HungNT.Database.Editor",
-    "rootNamespace": "HungNT.Database.Editor",
+    "name": "HungNT.DataConfig.Demo",
+    "rootNamespace": "HungNT.DataConfig.Demo",
     "references": [
-        "HungNT.Database",
-        "HungNT.Core"
+        "HungNT.Core",
+        "HungNT.DataConfig",
+        "Sirenix.OdinInspector.Attributes"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

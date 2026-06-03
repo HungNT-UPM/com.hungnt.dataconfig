@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public struct Column : IReadOnlyList<string>
     {

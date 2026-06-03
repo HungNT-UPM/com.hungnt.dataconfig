@@ -1,7 +1,6 @@
 using System;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
     public class ArrayContentAttribute : Attribute

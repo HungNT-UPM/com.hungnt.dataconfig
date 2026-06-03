@@ -4,19 +4,19 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>
-    /// Implementation của <see cref="IDatabaseService"/>.
-    /// Load tất cả <see cref="BaseDataTable"/> ScriptableObject từ <c>Resources/Database/</c>
+    /// Implementation của <see cref="IDataConfigService"/>.
+    /// Load tất cả <see cref="BaseDataConfigTable"/> ScriptableObject từ <c>Resources/Database/</c>
     /// rồi Initialize và đăng ký vào registry.
     /// </summary>
-    public class DatabaseService : MonoBehaviour, IDatabaseService
+    public class DataConfigService : MonoBehaviour, IDataConfigService
     {
-        private const string ResourcesPath = "Database";
+        private const string ResourcesPath = "DataConfig";
 
         [ShowInInspector]
-        private Dictionary<Type, BaseDataTable> _registry = new();
+        private Dictionary<Type, BaseDataConfigTable> _registry = new();
 
         // ── IService ─────────────────────────────────────────────────────────
 
@@ -29,20 +29,20 @@ namespace HungNT.Database
         {
         }
 
-        // ── IDatabaseService ─────────────────────────────────────────────────
+        // ── IDataConfigService ─────────────────────────────────────────────────
 
-        public T GetTable<T>() where T : BaseDataTable
+        public T GetTable<T>() where T : BaseDataConfigTable
         {
             var type = typeof(T);
             if (_registry.TryGetValue(type, out var table))
                 return (T)table;
 
             throw new InvalidOperationException(
-                $"[DatabaseService] Table '{type.Name}' not found. " +
+                $"[DataConfigService] Table '{type.Name}' not found. " +
                 $"Make sure a ScriptableObject of this type is placed under Resources/{ResourcesPath}/");
         }
 
-        public bool TryGetTable<T>(out T table) where T : BaseDataTable
+        public bool TryGetTable<T>(out T table) where T : BaseDataConfigTable
         {
             if (_registry.TryGetValue(typeof(T), out var raw))
             {
@@ -53,18 +53,18 @@ namespace HungNT.Database
             return false;
         }
 
-        public bool HasTable<T>() where T : BaseDataTable =>
+        public bool HasTable<T>() where T : BaseDataConfigTable =>
             _registry.ContainsKey(typeof(T));
 
         // ── Internal ─────────────────────────────────────────────────────────
 
         private void LoadAllFromResources()
         {
-            var assets = Resources.LoadAll<BaseDataTable>(ResourcesPath);
+            var assets = Resources.LoadAll<BaseDataConfigTable>(ResourcesPath);
 
             if (assets == null || assets.Length == 0)
             {
-                this.Log($"No BaseDataTable assets found at Resources/{ResourcesPath}/");
+                this.Log($"No BaseDataConfigTable assets found at Resources/{ResourcesPath}/");
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace HungNT.Database
                 this.Log($"Loaded table: {type.Name.Color("cyan")} (name: {asset.name})");
             }
 
-            this.Log($"Database ready. {_registry.Count} table(s) loaded.".Color("lime"));
+            this.Log($"DataConfig ready. {_registry.Count} table(s) loaded.".Color("lime"));
         }
 
 #if UNITY_EDITOR

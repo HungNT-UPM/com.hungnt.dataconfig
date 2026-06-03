@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using HungNT;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     /// <summary>Bỏ cột có header bắt đầu bằng <c>##</c>, và bỏ hàng có ô đầu là <c>##</c>.</summary>
     public static class SheetDataFilter

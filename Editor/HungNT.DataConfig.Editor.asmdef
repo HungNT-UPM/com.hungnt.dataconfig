@@ -1,10 +1,13 @@
 {
-    "name": "HungNT.Database",
-    "rootNamespace": "HungNT.Database",
+    "name": "HungNT.DataConfig.Editor",
+    "rootNamespace": "HungNT.DataConfig.Editor",
     "references": [
+        "HungNT.DataConfig",
         "HungNT.Core"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

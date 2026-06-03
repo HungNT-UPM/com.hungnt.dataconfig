@@ -1,7 +1,6 @@
 using System;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>
     /// Optional: class with <c>static void OnImportComplete()</c> invoked after a successful import batch.

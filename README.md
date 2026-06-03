@@ -1,36 +1,35 @@
-# HungNT Database (`com.hungnt.database`)
+# com.hungnt.dataconfig
 
-Service truy vấn dữ liệu game từ **ScriptableObject tables** (`BaseDataTable`), tích hợp **Service Locator**, import **Google Sheet** trong Editor (GGSheet).
+Service truy vấn dữ liệu game tĩnh từ **ScriptableObject tables** (`BaseDataConfigTable`), tích hợp **Service Locator**, import **Google Sheet** trong Editor (GGSheet).
 
 ## Tính năng
 
-- **`IDatabaseService` / `DatabaseService`** — lấy table theo kiểu, `TryGetTable<T>()`
-- **`BaseDataTable`** — SO chứa danh sách row, query helper (filter, find by id, …)
+- **`IDataConfigService` / `DataConfigService`** — lấy table theo kiểu, `TryGetTable<T>()`
+- **`BaseDataConfigTable`** — SO chứa danh sách row, query helper (filter, find by id, …)
 - **GGSheet (Editor)** — attribute cột/dòng, import CSV từ Google Sheet vào table
-- **`DatabaseConfigWindow`** — menu editor cấu hình import
+- **`DataConfigSettingsWindow`** — menu editor **HungNT > Sheet DataConfig** để cấu hình import
+
+## Setup
+
+1. Đặt `DataConfigService` + `ServiceRegister` trên một GameObject trong scene.
+2. Tạo `BaseDataConfigTable` ScriptableObjects tại `Assets/Resources/DataConfig/`.
+3. Kết nối trong Inspector qua `ServiceRegister`.
 
 ## Demo
 
-Assembly **`HungNT.Database.Demo`** — `Demo/DatabaseDemo.cs`, `ItemTable`, `CustomerTable`:
-
-1. Tạo asset `ItemTable` tại `Assets/Resources/Database/ItemTable.asset` (hoặc path bạn cấu hình trong `DatabaseService`).
-2. Scene có `DatabaseService` + `ServiceRegister` đã register `IDatabaseService`.
-3. Gắn `DatabaseDemo` → Play Mode → nút Odin *Show All Items*, *Filter: Free Items*, *Find By Id*, …
+Assembly **`HungNT.DataConfig.Demo`** — `Demo/DataConfigDemo.cs`, `ItemTable`, `CustomerTable`:
 
 ```csharp
-private void Start()
+var svc = ServiceLocator.Instance.Get<IDataConfigService>();
+if (svc.TryGetTable<ItemTable>(out var table))
 {
-    var db = this.GetService<IDatabaseService>();
-    if (db.TryGetTable<ItemTable>(out var table))
-    {
-        var all = table.GetAll();
-        table.TryGetById("item_001", out var item);
-    }
+    var all = table.GetAll();
+    table.TryGetById("item_001", out var item);
 }
 ```
 
 ## Google Sheet import (Editor)
 
-1. Khai báo class table kế thừa `BaseDataTable` với attribute GGSheet.
-2. Mở cửa sổ import GGSheet (menu HungNT / Database tùy cấu hình project).
-3. Import → ghi đè hoặc merge data vào ScriptableObject.
+1. Khai báo class table kế thừa `BaseDataConfigTable` với GGSheet attributes.
+2. Mở **HungNT > Sheet DataConfig** trong menu.
+3. Assign `DataConfigSettings` asset → Import All Tables.

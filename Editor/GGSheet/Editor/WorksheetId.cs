@@ -1,6 +1,6 @@
 using System;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     /// <summary>Identifies a worksheet slice inside a spreadsheet (for <see cref="DataSheet"/>).</summary>
     public readonly struct WorksheetId : IEquatable<WorksheetId>

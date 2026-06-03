@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     /// <summary>Parses the <c>values</c> array from a Google Sheets v4 <c>spreadsheets.values.get</c> JSON body.</summary>
     public static class SheetsApiValuesParser

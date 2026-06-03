@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace HungNT.Database.Demo
+namespace HungNT.DataConfig.Demo
 {
     // ── Enums ────────────────────────────────────────────────────────────────
 
@@ -66,8 +66,8 @@ namespace HungNT.Database.Demo
     /// <para>Import từ Google Sheet qua GGSheet (worksheet tên "ItemTable").</para>
     /// </summary>
     [ContentAsset]
-    [CreateAssetMenu(menuName = "Game/Database/ItemTable", fileName = "ItemTable")]
-    public class ItemTable : BaseDataTable
+    [CreateAssetMenu(menuName = "Game/DataConfig/ItemTable", fileName = "ItemTable")]
+    public class ItemTable : BaseDataConfigTable
     {
         [ArrayContent("ItemTable")]
         [TableList(ShowIndexLabels = true)]

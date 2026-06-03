@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     /// <summary>Parses CSV text (e.g. Google gviz export) into rows of string cells.</summary>
     public static class CsvParser

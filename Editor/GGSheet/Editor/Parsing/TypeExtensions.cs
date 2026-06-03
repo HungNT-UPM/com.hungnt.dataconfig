@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class TypeExtensions
     {

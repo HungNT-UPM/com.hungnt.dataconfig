@@ -1,6 +1,6 @@
 using System;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public interface ILogger
     {

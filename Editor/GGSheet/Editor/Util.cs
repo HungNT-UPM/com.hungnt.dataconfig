@@ -1,4 +1,4 @@
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class Util
     {

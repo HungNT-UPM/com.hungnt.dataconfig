@@ -5,20 +5,20 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
-    public class DatabaseConfigWindow : OdinEditorWindow
+    public class DataConfigSettingsWindow : OdinEditorWindow
     {
-        /// <summary>Tham số cho Unity <c>Resources.Load</c> (không có .asset), ví dụ asset tại <c>Assets/.../Resources/Configs/DatabaseConfig.asset</c>.</summary>
-        private const string DefaultConfigResourcesPath = "Configs/DatabaseConfig";
+        /// <summary>Tham số cho Unity <c>Resources.Load</c> (không có .asset), ví dụ asset tại <c>Assets/.../Resources/Configs/DataConfigSettings.asset</c>.</summary>
+        private const string DefaultConfigResourcesPath = "Configs/DataConfigSettings";
 
-        private const string DefaultConfigAssetPath = "Assets/Game/Resources/Configs/DatabaseConfig.asset";
+        private const string DefaultConfigAssetPath = "Assets/Game/Resources/Configs/DataConfigSettings.asset";
 
-        [MenuItem("HungNT/Sheet Database %#h")]
+        [MenuItem("HungNT/Sheet DataConfig %#h")]
         private static void OpenWindow()
         {
-            var w = GetWindow<DatabaseConfigWindow>();
-            w.titleContent = new GUIContent("GGSheet DB");
+            var w = GetWindow<DataConfigSettingsWindow>();
+            w.titleContent = new GUIContent("GGSheet DataConfig");
             w.position = new Rect(w.position.xMin, w.position.yMin, 720, 780);
             w.TryAssignDefaultConfigIfEmpty();
         }
@@ -55,7 +55,7 @@ namespace HungNT.Database.Editor
         [AssetSelector(Paths = "Assets/")]
         [InlineEditor(Expanded = true)]
         [PropertyOrder(-10)]
-        private DatabaseConfig _config;
+        private DataConfigSettings _config;
 
         [Title("Actions")]
         [PropertyOrder(0)]
@@ -150,9 +150,9 @@ namespace HungNT.Database.Editor
             if (_config != null)
                 return;
 
-            _config = Resources.Load<DatabaseConfig>(DefaultConfigResourcesPath);
+            _config = Resources.Load<DataConfigSettings>(DefaultConfigResourcesPath);
             if (_config == null && !string.IsNullOrEmpty(DefaultConfigAssetPath))
-                _config = AssetDatabase.LoadAssetAtPath<DatabaseConfig>(DefaultConfigAssetPath);
+                _config = AssetDatabase.LoadAssetAtPath<DataConfigSettings>(DefaultConfigAssetPath);
         }
     }
 }

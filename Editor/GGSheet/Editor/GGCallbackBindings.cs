@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     internal static class GGCallbackBindings
     {

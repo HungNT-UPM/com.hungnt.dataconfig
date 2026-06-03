@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     internal static class ColumnRange
     {

@@ -1,27 +1,28 @@
+using HungNT;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace HungNT.Database.Demo
+namespace HungNT.DataConfig.Demo
 {
     /// <summary>
-    /// Demo IDatabaseService với ItemTable.
+    /// Demo IDataConfigService với ItemTable.
     /// <para>Điều kiện:</para>
     /// <list type="bullet">
-    ///   <item>Tạo ScriptableObject ItemTable tại <c>Assets/Resources/Database/ItemTable.asset</c></item>
-    ///   <item>Có GameObject trong scene với DatabaseService + ServiceRegister đã register IDatabaseService</item>
+    ///   <item>Tạo ScriptableObject ItemTable tại <c>Assets/Resources/DataConfig/ItemTable.asset</c></item>
+    ///   <item>Có GameObject trong scene với DataConfigService + ServiceRegister đã register IDataConfigService</item>
     /// </list>
     /// </summary>
-    public class DatabaseDemo : MonoBehaviour
+    public class DataConfigDemo : MonoBehaviour
     {
         [ShowInInspector, ReadOnly, TableList]
         private IReadOnlyList<ItemData> _displayedItems;
 
-        private IDatabaseService _db;
+        private IDataConfigService _db;
 
         private void Start()
         {
-            _db = this.GetService<IDatabaseService>();
+            _db = ServiceLocator.Instance.Get<IDataConfigService>();
             ShowAll();
         }
 

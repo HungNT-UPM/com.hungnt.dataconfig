@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using HungNT;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public readonly struct Row : IReadOnlyDictionary<string, string>
     {

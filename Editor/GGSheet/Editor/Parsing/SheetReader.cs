@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class SheetReader
     {

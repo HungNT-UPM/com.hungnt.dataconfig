@@ -1,10 +1,8 @@
 {
-    "name": "HungNT.Database.Demo",
-    "rootNamespace": "HungNT.Database.Demo",
+    "name": "HungNT.DataConfig",
+    "rootNamespace": "HungNT.DataConfig",
     "references": [
-        "HungNT.Core",
-        "HungNT.Database",
-        "Sirenix.OdinInspector.Attributes"
+        "HungNT.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

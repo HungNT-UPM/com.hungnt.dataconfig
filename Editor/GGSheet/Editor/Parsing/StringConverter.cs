@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class StringConverter
     {

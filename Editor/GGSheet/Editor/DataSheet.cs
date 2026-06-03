@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public class DataSheet
     {

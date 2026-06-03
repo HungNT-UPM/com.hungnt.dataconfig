@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using HungNT;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public interface IImportUtility : ILogger
     {

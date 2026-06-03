@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
-    [CreateAssetMenu(menuName = "HungNT/Database/Database Config (GGSheet)", fileName = "DatabaseConfig")]
-    public class DatabaseConfig : ScriptableObject
+    [CreateAssetMenu(menuName = "HungNT/Database/Database Config (GGSheet)", fileName = "DataConfigSettings")]
+    public class DataConfigSettings : ScriptableObject
     {
         [Title("Spreadsheet")]
         [InfoBox("Public CSV: sheet must be shared (Anyone with the link can view). API key: enable Sheets API in Google Cloud.")]

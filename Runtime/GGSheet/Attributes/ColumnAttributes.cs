@@ -1,7 +1,6 @@
 using System;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>Maps a field to a spreadsheet column (snake_case header). Inherits content binding from <see cref="ContentAttribute"/>.</summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]

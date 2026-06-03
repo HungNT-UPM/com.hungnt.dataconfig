@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class GGSheetImporter
     {
-        public static void ImportAll(DatabaseConfig config, Action<float, string> onProgress = null)
+        public static void ImportAll(DataConfigSettings config, Action<float, string> onProgress = null)
         {
             if (config == null)
             {
-                DebugEx.LogError($"{("[GGSheet]").Bold()} {"DatabaseConfig is null.".Color("red")}");
+                DebugEx.LogError($"{("[GGSheet]").Bold()} {"DataConfigSettings is null.".Color("red")}");
                 return;
             }
 
@@ -53,7 +53,7 @@ namespace HungNT.Database.Editor
         }
 
         public static void ImportProfile(
-            DatabaseConfig config,
+            DataConfigSettings config,
             SheetProfile profile,
             Action<float, string> onWorksheetProgress = null)
         {

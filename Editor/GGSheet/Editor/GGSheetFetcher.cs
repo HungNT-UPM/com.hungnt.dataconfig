@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Uri = System.Uri;
 
-namespace HungNT.Database.Editor
+namespace HungNT.DataConfig.Editor
 {
     public static class GGSheetFetcher
     {
-        public static List<string[]> FetchWorksheet(DatabaseConfig config, WorksheetInfo worksheet)
+        public static List<string[]> FetchWorksheet(DataConfigSettings config, WorksheetInfo worksheet)
         {
             if (config == null || string.IsNullOrWhiteSpace(config.SheetId))
-                throw new ArgumentException("DatabaseConfig.SheetId is empty.");
+                throw new ArgumentException("DataConfigSettings.SheetId is empty.");
 
             if (worksheet == null || string.IsNullOrWhiteSpace(worksheet.SheetName))
                 throw new ArgumentException("Worksheet name is empty.");
@@ -28,7 +28,7 @@ namespace HungNT.Database.Editor
                     return FetchCsv(sheetId, tabRaw);
                 case FetchMode.ApiKey:
                     if (string.IsNullOrWhiteSpace(config.ApiKey))
-                        throw new ArgumentException("FetchMode.ApiKey requires Api Key on DatabaseConfig.");
+                        throw new ArgumentException("FetchMode.ApiKey requires Api Key on DataConfigSettings.");
                     EnsureWorksheetTabExistsOnSpreadsheet(sheetId, config.ApiKey.Trim(), tabRaw);
                     return FetchViaApi(sheetId, tabRaw, config.ApiKey.Trim());
                 default:

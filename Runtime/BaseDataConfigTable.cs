@@ -1,14 +1,13 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using HungNT;
 
-namespace HungNT.Database
+namespace HungNT.DataConfig
 {
     /// <summary>
-    /// Abstract ScriptableObject base cho database table.
+    /// Abstract ScriptableObject base cho data config table.
     /// </summary>
     [InlineEditor]
-    public class BaseDataTable : ScriptableObject, IDataTable
+    public class BaseDataConfigTable : ScriptableObject, IDataConfigTable
     {
         public virtual string TableName => GetType().Name;
 
