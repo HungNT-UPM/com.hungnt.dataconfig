@@ -1,7 +1,7 @@
 {
   "name": "com.hungnt.dataconfig",
   "version": "1.1.0",
-  "displayName": "com.hungnt.dataconfig",
+  "displayName": "HungNT Data Config",
   "description": "ScriptableObject data config service, Google Sheet import (editor), and GGSheet attributes.",
   "unity": "2022.3",
   "dependencies": {
