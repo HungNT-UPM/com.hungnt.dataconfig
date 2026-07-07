@@ -13,7 +13,7 @@ namespace HungNT.DataConfig
     /// </summary>
     public class DataConfigService : MonoBehaviour, IDataConfigService
     {
-        private const string ResourcesPath = "DataConfig";
+        private const string ResourcesPath = "DataConfigs";
 
         [ShowInInspector]
         private Dictionary<Type, BaseDataConfigTable> _registry = new();
