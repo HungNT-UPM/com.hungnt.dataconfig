@@ -1,7 +1,7 @@
-using HungNT;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace HungNT.DataConfig.Demo
 {
@@ -10,7 +10,8 @@ namespace HungNT.DataConfig.Demo
     /// <para>Điều kiện:</para>
     /// <list type="bullet">
     ///   <item>Tạo ScriptableObject ItemTable tại <c>Assets/Resources/DataConfig/ItemTable.asset</c></item>
-    ///   <item>Có GameObject trong scene với DataConfigService + ServiceRegister đã register IDataConfigService</item>
+    ///   <item>LifetimeScope gốc đã gọi <c>builder.InstallDataConfig()</c></item>
+    ///   <item>Đăng ký component này: <c>builder.RegisterComponentInHierarchy&lt;DataConfigDemo&gt;()</c></item>
     /// </list>
     /// </summary>
     public class DataConfigDemo : MonoBehaviour
@@ -20,9 +21,14 @@ namespace HungNT.DataConfig.Demo
 
         private IDataConfigService _db;
 
+        [Inject]
+        public void Construct(IDataConfigService db)
+        {
+            _db = db;
+        }
+
         private void Start()
         {
-            _db = ServiceLocator.Instance.Get<IDataConfigService>();
             ShowAll();
         }
 

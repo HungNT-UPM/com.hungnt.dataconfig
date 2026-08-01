@@ -1,11 +1,10 @@
-using HungNT;
-
 namespace HungNT.DataConfig
 {
     /// <summary>
-    /// Service quản lý và cung cấp truy cập vào các <see cref="IDataConfigTable"/>.
+    /// Service quản lý và cung cấp truy cập vào các <see cref="BaseDataConfigTable"/>.
+    /// Table được load từ <c>Resources/DataConfigs/</c> ngay khi service được tạo.
     /// </summary>
-    public interface IDataConfigService : IService
+    public interface IDataConfigService
     {
         /// <summary>Lấy table theo type. Throw nếu không tìm thấy.</summary>
         T GetTable<T>() where T : BaseDataConfigTable;
@@ -15,5 +14,8 @@ namespace HungNT.DataConfig
 
         /// <summary>Kiểm tra table đã được load chưa.</summary>
         bool HasTable<T>() where T : BaseDataConfigTable;
+
+        /// <summary>Load lại toàn bộ table từ Resources (công cụ Editor / hot-reload data).</summary>
+        void Reload();
     }
 }

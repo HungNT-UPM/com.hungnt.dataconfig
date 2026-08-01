@@ -1,35 +1,28 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using HungNT;
 
 namespace HungNT.DataConfig
 {
     /// <summary>
     /// Implementation của <see cref="IDataConfigService"/>.
-    /// Load tất cả <see cref="BaseDataConfigTable"/> ScriptableObject từ <c>Resources/Database/</c>
-    /// rồi Initialize và đăng ký vào registry.
+    /// Load tất cả <see cref="BaseDataConfigTable"/> ScriptableObject từ <c>Resources/DataConfigs/</c>,
+    /// Initialize rồi đăng ký vào registry.
     /// </summary>
-    public class DataConfigService : MonoBehaviour, IDataConfigService
+    public class DataConfigService : IDataConfigService
     {
         private const string ResourcesPath = "DataConfigs";
 
-        [ShowInInspector]
-        private Dictionary<Type, BaseDataConfigTable> _registry = new();
+        private readonly Dictionary<Type, BaseDataConfigTable> _registry = new();
 
-        // ── IService ─────────────────────────────────────────────────────────
-
-        public void Initialize()
+        /// <summary>
+        /// Load ngay trong constructor: service nào inject <see cref="IDataConfigService"/> cũng chắc chắn
+        /// nhận được registry đã sẵn sàng — thay cho cặp <c>Initialize</c>/<c>LateInitialize</c> cũ.
+        /// </summary>
+        public DataConfigService()
         {
             LoadAllFromResources();
         }
-
-        public void LateInitialize()
-        {
-        }
-
-        // ── IDataConfigService ─────────────────────────────────────────────────
 
         public T GetTable<T>() where T : BaseDataConfigTable
         {
@@ -49,12 +42,19 @@ namespace HungNT.DataConfig
                 table = (T)raw;
                 return true;
             }
+
             table = null;
             return false;
         }
 
         public bool HasTable<T>() where T : BaseDataConfigTable =>
             _registry.ContainsKey(typeof(T));
+
+        public void Reload()
+        {
+            _registry.Clear();
+            LoadAllFromResources();
+        }
 
         // ── Internal ─────────────────────────────────────────────────────────
 
@@ -84,14 +84,5 @@ namespace HungNT.DataConfig
 
             this.Log($"DataConfig ready. {_registry.Count} table(s) loaded.".Color("lime"));
         }
-
-#if UNITY_EDITOR
-        [Button("Reload (Editor Only)"), PropertyOrder(-1)]
-        private void ReloadInEditor()
-        {
-            _registry.Clear();
-            LoadAllFromResources();
-        }
-#endif
     }
 }

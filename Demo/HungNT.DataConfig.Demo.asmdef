@@ -4,6 +4,7 @@
     "references": [
         "HungNT.Core",
         "HungNT.DataConfig",
+        "VContainer",
         "Sirenix.OdinInspector.Attributes"
     ],
     "includePlatforms": [],
