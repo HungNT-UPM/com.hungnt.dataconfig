@@ -16,8 +16,8 @@ namespace HungNT.DataConfig
         private readonly Dictionary<Type, BaseDataConfigTable> _registry = new();
 
         /// <summary>
-        /// Load ngay trong constructor: service nào inject <see cref="IDataConfigService"/> cũng chắc chắn
-        /// nhận được registry đã sẵn sàng — thay cho cặp <c>Initialize</c>/<c>LateInitialize</c> cũ.
+        /// Load ngay trong constructor để service nào inject <see cref="IDataConfigService"/> cũng
+        /// chắc chắn nhận được registry đã sẵn sàng.
         /// </summary>
         public DataConfigService()
         {

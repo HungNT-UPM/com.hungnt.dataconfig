@@ -10,8 +10,7 @@ namespace HungNT.DataConfig.Demo
     /// <para>Điều kiện:</para>
     /// <list type="bullet">
     ///   <item>Tạo ScriptableObject ItemTable tại <c>Assets/Resources/DataConfig/ItemTable.asset</c></item>
-    ///   <item>LifetimeScope gốc đã gọi <c>builder.InstallDataConfig()</c></item>
-    ///   <item>Đăng ký component này: <c>builder.RegisterComponentInHierarchy&lt;DataConfigDemo&gt;()</c></item>
+    ///   <item>Đăng ký <see cref="IDataConfigService"/> và component này ở LifetimeScope của scene</item>
     /// </list>
     /// </summary>
     public class DataConfigDemo : MonoBehaviour
@@ -19,12 +18,12 @@ namespace HungNT.DataConfig.Demo
         [ShowInInspector, ReadOnly, TableList]
         private IReadOnlyList<ItemData> _displayedItems;
 
-        private IDataConfigService _db;
+        private IDataConfigService _dataConfig;
 
         [Inject]
-        public void Construct(IDataConfigService db)
+        public void Construct(IDataConfigService dataConfig)
         {
-            _db = db;
+            _dataConfig = dataConfig;
         }
 
         private void Start()
@@ -37,35 +36,35 @@ namespace HungNT.DataConfig.Demo
         [Button("Show All Items"), FoldoutGroup("Query")]
         private void ShowAll()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             _displayedItems = table.GetAll();
         }
 
         [Button("Filter: Free Items"), FoldoutGroup("Query")]
         private void ShowFree()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             _displayedItems = table.GetByUnlockType(UnlockType.Free);
         }
 
         [Button("Filter: Coin Items"), FoldoutGroup("Query")]
         private void ShowCoin()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             _displayedItems = table.GetByUnlockType(UnlockType.Coin);
         }
 
         [Button("Filter: Ads Items"), FoldoutGroup("Query")]
         private void ShowAds()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             _displayedItems = table.GetByUnlockType(UnlockType.Ads);
         }
 
         [Button("Filter: Category Ao"), FoldoutGroup("Query")]
         private void ShowAo()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             _displayedItems = table.GetByCategory(ItemCategory.Armor);
         }
 
@@ -74,7 +73,7 @@ namespace HungNT.DataConfig.Demo
         [Button("Find By Id"), FoldoutGroup("Query")]
         private void FindById()
         {
-            if (!_db.TryGetTable<ItemTable>(out var table)) return;
+            if (!_dataConfig.TryGetTable<ItemTable>(out var table)) return;
             if (table.TryGetById(_findId, out var item))
             {
                 Debug.Log($"[Demo] Found: {item.Name} | {item.Category} | {item.UnlockType}");
