@@ -18,13 +18,7 @@ namespace HungNT.DataConfig.Demo
         [ShowInInspector, ReadOnly, TableList]
         private IReadOnlyList<ItemData> _displayedItems;
 
-        private IDataConfigService _dataConfig;
-
-        [Inject]
-        public void Construct(IDataConfigService dataConfig)
-        {
-            _dataConfig = dataConfig;
-        }
+        [Inject] private IDataConfigService _dataConfig;
 
         private void Start()
         {

@@ -1,35 +1,52 @@
 # com.hungnt.dataconfig
 
-Service truy vấn dữ liệu game tĩnh từ **ScriptableObject tables** (`BaseDataConfigTable`), tích hợp **Service Locator**, import **Google Sheet** trong Editor (GGSheet).
+Bảng dữ liệu cấu hình dạng ScriptableObject, kèm công cụ import từ Google Sheet.
 
-## Tính năng
+## Yêu cầu
 
-- **`IDataConfigService` / `DataConfigService`** — lấy table theo kiểu, `TryGetTable<T>()`
-- **`BaseDataConfigTable`** — SO chứa danh sách row, query helper (filter, find by id, …)
-- **GGSheet (Editor)** — attribute cột/dòng, import CSV từ Google Sheet vào table
-- **`DataConfigSettingsWindow`** — menu editor **HungNT > Sheet DataConfig** để cấu hình import
+`com.hungnt.core` 2.0.0 và **VContainer** (cài thủ công qua Git URL — xem README của core).
 
-## Setup
-
-1. Đặt `DataConfigService` + `ServiceRegister` trên một GameObject trong scene.
-2. Tạo `BaseDataConfigTable` ScriptableObjects tại `Assets/Resources/DataConfig/`.
-3. Kết nối trong Inspector qua `ServiceRegister`.
-
-## Demo
-
-Assembly **`HungNT.DataConfig.Demo`** — `Demo/DataConfigDemo.cs`, `ItemTable`, `CustomerTable`:
+## Cài đặt vào container
 
 ```csharp
-var svc = ServiceLocator.Instance.Get<IDataConfigService>();
-if (svc.TryGetTable<ItemTable>(out var table))
+builder.InstallDataConfig();
+```
+
+Service load toàn bộ table từ `Resources/DataConfigs/` ngay khi được tạo, nên nơi nào inject được `IDataConfigService` thì nơi đó chắc chắn có registry đã sẵn sàng.
+
+## Khai báo table
+
+```csharp
+[ContentAsset]
+[CreateAssetMenu(menuName = "Game/DataConfig/ItemTable")]
+public class ItemTable : BaseDataConfigTable
 {
-    var all = table.GetAll();
-    table.TryGetById("item_001", out var item);
+    [ArrayContent("ItemTable")]
+    public ItemData[] Items = Array.Empty<ItemData>();
 }
 ```
 
-## Google Sheet import (Editor)
+Đặt asset vào `Resources/DataConfigs/`.
 
-1. Khai báo class table kế thừa `BaseDataConfigTable` với GGSheet attributes.
-2. Mở **HungNT > Sheet DataConfig** trong menu.
-3. Assign `DataConfigSettings` asset → Import All Tables.
+## Sử dụng
+
+```csharp
+public class Shop : MonoBehaviour
+{
+    [Inject] private IDataConfigService _dataConfig;
+
+    private void Start()
+    {
+        if (_dataConfig.TryGetTable<ItemTable>(out var table))
+        {
+            // ...
+        }
+    }
+}
+```
+
+`GetTable<T>()` ném exception nếu chưa load, `TryGetTable<T>()` trả về false. `Reload()` nạp lại từ Resources khi cần hot-reload data lúc phát triển.
+
+## Import từ Google Sheet
+
+Menu **`HungNT/Sheet DataConfig`**. Cần attribute `GGSheet` trên model và một `DataConfigSettings` ScriptableObject cấu hình sheet nguồn.
